@@ -328,3 +328,9 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+
+# Visual Studio 2015
+.vs/
+
+NerdBotCore/NerdBotHost/logs/
+log-*.txt

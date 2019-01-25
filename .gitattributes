@@ -1,0 +1,5 @@
+* text=auto
+
+*.cs eol=crlf
+
+*.sln text eol=crlf
