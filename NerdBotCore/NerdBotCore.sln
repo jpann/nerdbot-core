@@ -32,11 +32,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{858D98EC-C9CA-4F15-8CF1-62D8DCA061BD}"
 	ProjectSection(SolutionItems) = preProject
 		..\Dockerfile = ..\Dockerfile
+		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NerdBotGiphyPlugin", "NerdBotGiphyPlugin\NerdBotGiphyPlugin.csproj", "{D63C4EE3-F857-40ED-B065-351C1191553F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NerdBotGiphyPlugin", "NerdBotGiphyPlugin\NerdBotGiphyPlugin.csproj", "{D63C4EE3-F857-40ED-B065-351C1191553F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NerdBotGiphyPlugin_Tests", "NerdBotGiphyPlugin_Tests\NerdBotGiphyPlugin_Tests.csproj", "{03DD25CB-D185-452C-8233-8116AE2DD135}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NerdBotGiphyPlugin_Tests", "NerdBotGiphyPlugin_Tests\NerdBotGiphyPlugin_Tests.csproj", "{03DD25CB-D185-452C-8233-8116AE2DD135}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
