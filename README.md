@@ -1,5 +1,7 @@
 # NerdBot-Core
 
+[![Build status](https://ci.appveyor.com/api/projects/status/n2g4fj7t8yjrqqwo?svg=true)](https://ci.appveyor.com/project/jpann/nerdbot-core)
+
 This is a GroupMe bot that lets people in chat query Magic: The Gathering card information through the ScryFall API.
 
 This is written using ASP.NET Core 2.2 using NancyFX for the routing. This is basically a copy of my other project [NerdBot](https://github.com/jpann/NerdBot), but I trimmed down the plugins/commands a bit and removed the dependency on a MongoDB database containing card/set information and it is running on ASP.NET Core 2.2. I'll be updating this instead of the other 'NerdBot' project from now on.
