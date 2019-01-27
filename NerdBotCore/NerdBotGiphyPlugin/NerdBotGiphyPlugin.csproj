@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="coveralls.io" Version="1.4.2" />
+    <PackageReference Include="OpenCover" Version="4.6.519" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\NerdBotCommon\NerdBotCommon.csproj" />
   </ItemGroup>
 
