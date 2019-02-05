@@ -58,7 +58,7 @@ after_build:
   - cmd: 7z a C:\projects\nerdbot-core\NerdBotUrbanDictPlugin-%APPVEYOR_BUILD_VERSION%.zip *.* -x!*.pdb -x!*.vhost.*
 
 artifacts:
-  - path: 'C:\projects\nerdbot-core\*.zip'
+  - path: '*.zip'
 
 test_script:
   - dotnet test --test-adapter-path:. --logger:Appveyor C:\projects\nerdbot-core\NerdBotCore\NerdBotCore.sln
