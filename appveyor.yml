@@ -61,7 +61,7 @@ artifacts:
   - path: 'C:\projects\nerdbot-core\*.zip'
 
 test_script:
-  - dotnet test --test-adapter-path:. --logger:Appveyor NerdBotCore\NerdBotCore.sln
+  - dotnet test --test-adapter-path:. --logger:Appveyor C:\projects\nerdbot-core\NerdBotCore\NerdBotCore.sln
 
 deploy:
   release: NerdBot-$(appveyor_repo_tag_name)
