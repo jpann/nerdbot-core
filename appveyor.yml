@@ -16,6 +16,15 @@ branches:
 # scripts that are called at very beginning, before repo cloning
 init:
   - git config --global core.autocrlf input
+  - ps: >-
+      if ($env:APPVEYOR_REPO_TAG -eq "true") 
+      { 
+        Update-AppveyorBuild -Version "$env:APPVEYOR_REPO_TAG_NAME".Replace("v", "")
+      }
+      else
+      {
+        Update-AppveyorBuild -Version "$env:APPVEYOR_BUILD_VERSION"
+      }
 
 configuration:
   - Release
@@ -27,12 +36,12 @@ dotnet_csproj:
   assembly_version: '{version}' 
   file_version: '{version}'
 
+before_build:
+  - nuget restore ./NerdBotCore/NerdBotCore.sln
+
 build:
   project: NerdBotCore/NerdBotCore.sln
   verbosity: minimal
-
-before_build:
-  - nuget restore ./NerdBotCore/NerdBotCore.sln
 
 after_build:
   - cmd: cd ./NerdBotCore/NerdBotHost/bin/%CONFIGURATION%/netcoreapp2.2
