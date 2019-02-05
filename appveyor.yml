@@ -1,0 +1,72 @@
+image: Visual Studio 2017
+
+version: 1.0.{build}
+
+skip_non_tags: true
+
+skip_commits:
+  files:
+    - '**/*.md'
+
+branches:
+  only:
+    - master
+    - /^v\d+\.\d+\.\d+$/
+
+# scripts that are called at very beginning, before repo cloning
+init:
+  - git config --global core.autocrlf input
+
+configuration:
+  - Release
+
+dotnet_csproj: 
+  patch: true 
+  file: '**\*.csproj' 
+  version: '{version}' 
+  assembly_version: '{version}' 
+  file_version: '{version}'
+
+build:
+  project: NerdBotCore/NerdBotCore.sln
+  verbosity: minimal
+
+before_build:
+  - nuget restore ./NerdBotCore/NerdBotCore.sln
+
+after_build:
+  - cmd: cd ./NerdBotCore/NerdBotHost/bin/%CONFIGURATION%/netcoreapp2.2
+  - cmd: 7z a C:\projects\NerdBotCore\NerdBot-%APPVEYOR_BUILD_VERSION%.zip *.* -x!*.pdb -x!*.vhost.*
+  - cmd: cd ./NerdBotCore/NerdBotCorePlugin/bin/%CONFIGURATION%/netcoreapp2.2
+  - cmd: 7z a C:\projects\NerdBotCore\NerdBotCorePlugin-%APPVEYOR_BUILD_VERSION%.zip *.* -x!*.pdb -x!*.vhost.*
+  - cmd: cd ./NerdBotCore/NerdBotGiphyPlugin/bin/%CONFIGURATION%/netcoreapp2.2
+  - cmd: 7z a C:\projects\NerdBotCore\NerdBotGiphyPlugin-%APPVEYOR_BUILD_VERSION%.zip *.* -x!*.pdb -x!*.vhost.*
+  - cmd: cd ./NerdBotCore/NerdBotRoastMePlugin/bin/%CONFIGURATION%/netcoreapp2.2
+  - cmd: 7z a C:\projects\NerdBotCore\NerdBotRoastMePlugin-%APPVEYOR_BUILD_VERSION%.zip *.* -x!*.pdb -x!*.vhost.*
+  - cmd: cd ./NerdBotCore/NerdBotScryFallPlugin/bin/%CONFIGURATION%/netcoreapp2.2
+  - cmd: 7z a C:\projects\NerdBotCore\NerdBotScryFallPlugin-%APPVEYOR_BUILD_VERSION%.zip *.* -x!*.pdb -x!*.vhost.*
+  - cmd: cd ./NerdBotCore/NerdBotUrbanDictPlugin/bin/%CONFIGURATION%/netcoreapp2.2
+  - cmd: 7z a C:\projects\NerdBotCore\NerdBotUrbanDictPlugin-%APPVEYOR_BUILD_VERSION%.zip *.* -x!*.pdb -x!*.vhost.*
+
+artifacts:
+  - path: 'C:\projects\NerdBotCore\*.zip'
+
+test_script:
+  - dotnet test --test-adapter-path:. --logger:Appveyor NerdBotCore\NerdBotCore.sln
+
+deploy:
+  release: NerdBot-$(appveyor_repo_tag_name)
+  description: NerdBot build $(APPVEYOR_BUILD_VERSION).
+  provider: GitHub
+  auth_token:
+    secure: EXRr3SxM7c0kVhOc5HAyMr4gUaCJA11QE/RbTNrqYil9WXKDqoQoigCfdD6ZjhDX # encrypted token from GitHub
+  artifact: /.*\.zip/
+  draft: false
+  prerelease: false
+  tag: $(appveyor_repo_tag_name)
+  on:
+    branch: 
+      - master                # release from master branch only
+      - /^v\d+\.\d+\.\d+$/
+    APPVEYOR_REPO_TAG: true       # deploy on tag push only
+
