@@ -45,20 +45,20 @@ build:
 
 after_build:
   - cmd: cd ./NerdBotCore/NerdBotHost/bin/%CONFIGURATION%/netcoreapp2.2
-  - cmd: 7z a C:\projects\NerdBotCore\NerdBot-%APPVEYOR_BUILD_VERSION%.zip *.* -x!*.pdb -x!*.vhost.*
-  - cmd: cd ./NerdBotCore/NerdBotCorePlugin/bin/%CONFIGURATION%/netcoreapp2.2
-  - cmd: 7z a C:\projects\NerdBotCore\NerdBotCorePlugin-%APPVEYOR_BUILD_VERSION%.zip *.* -x!*.pdb -x!*.vhost.*
-  - cmd: cd ./NerdBotCore/NerdBotGiphyPlugin/bin/%CONFIGURATION%/netcoreapp2.2
-  - cmd: 7z a C:\projects\NerdBotCore\NerdBotGiphyPlugin-%APPVEYOR_BUILD_VERSION%.zip *.* -x!*.pdb -x!*.vhost.*
-  - cmd: cd ./NerdBotCore/NerdBotRoastMePlugin/bin/%CONFIGURATION%/netcoreapp2.2
-  - cmd: 7z a C:\projects\NerdBotCore\NerdBotRoastMePlugin-%APPVEYOR_BUILD_VERSION%.zip *.* -x!*.pdb -x!*.vhost.*
-  - cmd: cd ./NerdBotCore/NerdBotScryFallPlugin/bin/%CONFIGURATION%/netcoreapp2.2
-  - cmd: 7z a C:\projects\NerdBotCore\NerdBotScryFallPlugin-%APPVEYOR_BUILD_VERSION%.zip *.* -x!*.pdb -x!*.vhost.*
-  - cmd: cd ./NerdBotCore/NerdBotUrbanDictPlugin/bin/%CONFIGURATION%/netcoreapp2.2
-  - cmd: 7z a C:\projects\NerdBotCore\NerdBotUrbanDictPlugin-%APPVEYOR_BUILD_VERSION%.zip *.* -x!*.pdb -x!*.vhost.*
+  - cmd: 7z a C:\projects\nerdbot-core\NerdBot-%APPVEYOR_BUILD_VERSION%.zip *.* -x!*.pdb -x!*.vhost.*
+  - cmd: cd C:\projects\nerdbot-core\NerdBotCore\NerdBotCorePlugin\bin\%CONFIGURATION%\netcoreapp2.2
+  - cmd: 7z a C:\projects\nerdbot-core\NerdBotCorePlugin-%APPVEYOR_BUILD_VERSION%.zip *.* -x!*.pdb -x!*.vhost.*
+  - cmd: cd C:\projects\nerdbot-core\NerdBotCore\NerdBotGiphyPlugin\bin\%CONFIGURATION%\netcoreapp2.2
+  - cmd: 7z a C:\projects\nerdbot-core\NerdBotGiphyPlugin-%APPVEYOR_BUILD_VERSION%.zip *.* -x!*.pdb -x!*.vhost.*
+  - cmd: cd C:\projects\nerdbot-core\NerdBotCore\NerdBotRoastMePlugin\bin\%CONFIGURATION%\netcoreapp2.2
+  - cmd: 7z a C:\projects\nerdbot-core\NerdBotRoastMePlugin-%APPVEYOR_BUILD_VERSION%.zip *.* -x!*.pdb -x!*.vhost.*
+  - cmd: cd C:\projects\nerdbot-core\NerdBotCore\NerdBotScryFallPlugin\bin\%CONFIGURATION%\netcoreapp2.2
+  - cmd: 7z a C:\projects\nerdbot-core\NerdBotScryFallPlugin-%APPVEYOR_BUILD_VERSION%.zip *.* -x!*.pdb -x!*.vhost.*
+  - cmd: cd C:\projects\nerdbot-core\NerdBotCore\NerdBotUrbanDictPlugin\bin\%CONFIGURATION%\netcoreapp2.2
+  - cmd: 7z a C:\projects\nerdbot-core\NerdBotUrbanDictPlugin-%APPVEYOR_BUILD_VERSION%.zip *.* -x!*.pdb -x!*.vhost.*
 
 artifacts:
-  - path: 'C:\projects\NerdBotCore\*.zip'
+  - path: 'C:\projects\nerdbot-core\*.zip'
 
 test_script:
   - dotnet test --test-adapter-path:. --logger:Appveyor NerdBotCore\NerdBotCore.sln
