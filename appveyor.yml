@@ -12,6 +12,7 @@ branches:
   only:
     - master
     - /^v\d+\.\d+\.\d+$/
+    - develop
 
 # scripts that are called at very beginning, before repo cloning
 init:
