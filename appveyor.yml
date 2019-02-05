@@ -2,7 +2,8 @@ image: Visual Studio 2017
 
 version: 1.0.{build}
 
-#skip_non_tags: true
+skip_non_tags: false
+skip_tags: true
 
 skip_commits:
   files:
@@ -11,21 +12,10 @@ skip_commits:
 branches:
   only:
     - master
-    - /^v\d+\.\d+\.\d+$/
-    - develop
 
 # scripts that are called at very beginning, before repo cloning
 init:
   - git config --global core.autocrlf input
-  - ps: >-
-      if ($env:APPVEYOR_REPO_TAG -eq "true") 
-      { 
-        Update-AppveyorBuild -Version "$env:APPVEYOR_REPO_TAG_NAME".Replace("v", "")
-      }
-      else
-      {
-        Update-AppveyorBuild -Version "$env:APPVEYOR_BUILD_VERSION"
-      }
 
 configuration:
   - Release
@@ -65,7 +55,7 @@ test_script:
   - dotnet test --test-adapter-path:. --logger:Appveyor C:\projects\nerdbot-core\NerdBotCore\NerdBotCore.sln
 
 deploy:
-  release: NerdBot-$(appveyor_repo_tag_name)
+  release: NerdBot-$(APPVEYOR_BUILD_VERSION)
   description: NerdBot build $(APPVEYOR_BUILD_VERSION).
   provider: GitHub
   auth_token:
@@ -73,10 +63,8 @@ deploy:
   artifact: /.*\.zip/
   draft: false
   prerelease: false
-  tag: $(appveyor_repo_tag_name)
+  tag: $(APPVEYOR_BUILD_VERSION)
   on:
     branch: 
-      - master                # release from master branch only
-      - /^v\d+\.\d+\.\d+$/
-    APPVEYOR_REPO_TAG: true       # deploy on tag push only
+      - master  # release from master branch only
 
