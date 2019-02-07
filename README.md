@@ -1,6 +1,6 @@
 # NerdBot-Core
 
-[![Build status](https://ci.appveyor.com/api/projects/status/n2g4fj7t8yjrqqwo?svg=true)](https://ci.appveyor.com/project/jpann/nerdbot-core) [![](https://img.shields.io/appveyor/tests/jpann/nerdbot-core.svg)](https://ci.appveyor.com/project/jpann/nerdbot-core/build/tests)
+[![Build status](https://ci.appveyor.com/api/projects/status/n2g4fj7t8yjrqqwo/branch/master?svg=true)](https://ci.appveyor.com/project/jpann/nerdbot-core/branch/master) [![](https://img.shields.io/appveyor/tests/jpann/nerdbot-core.svg)](https://ci.appveyor.com/project/jpann/nerdbot-core/build/tests)
 
 
 
