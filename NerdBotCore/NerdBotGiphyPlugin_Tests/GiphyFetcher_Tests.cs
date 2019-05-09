@@ -36,7 +36,6 @@ namespace NerdBotGiphyPlugin_Tests
         public void SetUp()
         {
             unitTestContext = new UnitTestContext();
-            unitTestContext.BotConfig.EnvironmentVariables.Add("GIPHY_KEY", "test");
 
             fetcher = new GiphyFetcher("test", unitTestContext.HttpClientMock.Object, unitTestContext.LoggerMock.Object);
         }
