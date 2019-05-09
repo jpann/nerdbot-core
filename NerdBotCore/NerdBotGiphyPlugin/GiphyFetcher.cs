@@ -10,18 +10,24 @@ namespace NerdBotGiphyPlugin
 {
     public class GiphyFetcher
     {
+        private readonly string _apiKey;
         private readonly IHttpHandler _httpClient;
         private readonly ILogger _logger;
-        private string _url = "http://api.giphy.com/v1/gifs/translate?s={0}&api_key=dc6zaTOxFJmzC";
+        private string _url = "http://api.giphy.com/v1/gifs/translate?s={0}&api_key={1}";
+        
 
-        public GiphyFetcher(IHttpHandler httpClient, ILogger logger)
+        public GiphyFetcher(string apiKey, IHttpHandler httpClient, ILogger logger)
         {
+            if (string.IsNullOrEmpty(apiKey))
+                throw new ArgumentNullException("apiKey");
+
             if (httpClient == null)
                 throw new ArgumentException("httpClient");
 
             if (logger == null)
                 throw new ArgumentException("logger");
 
+            this._apiKey = apiKey;
             this._httpClient = httpClient;
             this._logger = logger;
         }
@@ -32,7 +38,7 @@ namespace NerdBotGiphyPlugin
             {
                 keyword = Uri.EscapeDataString(keyword);
 
-                string latestJson = await this._httpClient.GetStringAsync(string.Format(this._url, keyword));
+                string latestJson = await this._httpClient.GetStringAsync(string.Format(this._url, keyword, this._apiKey));
 
                 if (string.IsNullOrEmpty(latestJson))
                     return null;

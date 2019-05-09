@@ -109,6 +109,11 @@ namespace NerdBotHost
                 });
             }
 
+            foreach (KeyValuePair<string, string> pair in _configuration.AsEnumerable())
+            {
+                botConfiguration.EnvironmentVariables.Add(pair.Key, pair.Value);
+            }
+
             container.Register(botConfiguration);
 
             // Register the instance of IBotServices

@@ -36,8 +36,9 @@ namespace NerdBotGiphyPlugin_Tests
         public void SetUp()
         {
             unitTestContext = new UnitTestContext();
+            unitTestContext.BotConfig.EnvironmentVariables.Add("GIPHY_KEY", "test");
 
-            fetcher = new GiphyFetcher(unitTestContext.HttpClientMock.Object, unitTestContext.LoggerMock.Object);
+            fetcher = new GiphyFetcher("test", unitTestContext.HttpClientMock.Object, unitTestContext.LoggerMock.Object);
         }
 
         [Test]
@@ -48,7 +49,7 @@ namespace NerdBotGiphyPlugin_Tests
             var httpJsonTask = new TaskCompletionSource<string>();
             httpJsonTask.SetResult(giphydata);
 
-            unitTestContext.HttpClientMock.Setup(h => h.GetStringAsync($"http://api.giphy.com/v1/gifs/translate?s={keyword}&api_key=dc6zaTOxFJmzC"))
+            unitTestContext.HttpClientMock.Setup(h => h.GetStringAsync($"http://api.giphy.com/v1/gifs/translate?s={keyword}&api_key=test"))
                 .Returns(httpJsonTask.Task);
 
             string actual = fetcher.GetGifAsync(keyword).Result;

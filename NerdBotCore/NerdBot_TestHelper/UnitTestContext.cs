@@ -21,6 +21,7 @@ namespace NerdBot_TestHelper
         public string BotId { get; set; }
         public string[] SecretToken { get; set; }
         public string[] SetcretTokenBad { get; set; }
+        public string GiphyKey { get; set; }
         public BotConfiguration BotConfig { get; set; }
         public Mock<ILogger> LoggerMock { get; set; }
         public Mock<IHttpHandler> HttpClientMock { get; set; }
@@ -46,6 +47,9 @@ namespace NerdBot_TestHelper
             SecretToken = new string[] { "TOKEN" };
             SetcretTokenBad = new string[] { "BADTOKEN" };
 
+            GiphyKey = "test";
+
+
             // Setup BotConfig
             BotConfig = new BotConfiguration()
             {
@@ -57,6 +61,10 @@ namespace NerdBot_TestHelper
                         SecretToken = SecretToken[0],
                         BotId = BotId
                     }
+                },
+                EnvironmentVariables = new Dictionary<string, string>()
+                {
+                    { "GIPHY_KEY", GiphyKey }
                 }
             };
 
@@ -104,6 +112,9 @@ namespace NerdBot_TestHelper
 
             BotServicesMock.SetupGet(s => s.UrlShortener)
                 .Returns(UrlShortenerMock.Object);
+
+            BotServicesMock.SetupGet(s => s.BotConfig)
+                .Returns(BotConfig);
         }
     }
 }

@@ -49,7 +49,9 @@ namespace NerdBotGiphyPlugin
 
         public override void OnLoad()
         {
-            this._giphyFetcher = new GiphyFetcher(this.Services.HttpClient, this.Logger);
+            string giphyKey = this.Services.BotConfig.EnvironmentVariables["GIPHY_KEY"];
+
+            this._giphyFetcher = new GiphyFetcher(giphyKey, this.Services.HttpClient, this.Logger);
         }
 
         public override void OnUnload()

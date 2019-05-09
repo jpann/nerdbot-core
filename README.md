@@ -40,6 +40,7 @@ Run it:
 	-e BOTNAME="<GROUP ME BOT NAME> \
 	-e BITLY_USER=<YOUR BITLEY USER> \
 	-e BITLY_KEY=<YOUR BITLEY KEY> \
+   -e GIPHY_KEY=<YOUR GIPHY API KEY> \
 	nerdbot-core:1.0.0
 ```
 
@@ -59,6 +60,7 @@ You can have this bot connect to multiple GroupMe groups by pipe (|) delimiting 
 	-e BOTNAME="<GROUP ME BOT NAME> \
 	-e BITLY_USER=<YOUR BITLEY USER> \
 	-e BITLY_KEY=<YOUR BITLEY KEY> \
+   -e GIPHY_KEY=<YOUR GIPHY API KEY> \
 	nerdbot-core:1.0.0
 ```
 Then would would point each bot's 'Callback URL' to the appropriate bot route with that bot's token.

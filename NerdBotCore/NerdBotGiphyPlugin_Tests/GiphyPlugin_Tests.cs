@@ -67,7 +67,7 @@ namespace NerdBotGiphyPlugin_Tests
             var httpJsonTask = new TaskCompletionSource<string>();
             httpJsonTask.SetResult(giphydata);
 
-            unitTestContext.HttpClientMock.Setup(h => h.GetStringAsync($"http://api.giphy.com/v1/gifs/translate?s={keyword}&api_key=dc6zaTOxFJmzC"))
+            unitTestContext.HttpClientMock.Setup(h => h.GetStringAsync($"http://api.giphy.com/v1/gifs/translate?s={keyword}&api_key=test"))
                 .Returns(httpJsonTask.Task);
 
             var msg = new GroupMeMessage();
