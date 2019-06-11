@@ -14,8 +14,4 @@
     </ProjectReference>
   </ItemGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="if $(ConfigurationName) == Debug COPY /Y $(OutDir)\*.* $(SolutionDir)\NerdBotHost\$(OutDir)\plugins" />
-  </Target>
-
 </Project>
