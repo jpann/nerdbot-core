@@ -61,7 +61,11 @@ namespace NerdBotScryFallPlugin_Tests
             var card = new ScryFallCard()
             {
                 Name = "Strip Mine",
-                PriceUsd = "53.54",
+                Prices = new ScryFall_Prices()
+                {
+                    USD = "53.54",
+                    USDFoil = "53.54"
+                },
                 ScryFallUri = "https://scryfall.com/card/exp/43?utm_source=api",
                 SetName = "Zendikar Expeditions",
                 SetCode = "EXP",
@@ -102,7 +106,11 @@ namespace NerdBotScryFallPlugin_Tests
             var card = new ScryFallCard()
             {
                 Name = "Strip Mine",
-                PriceUsd = "53.54",
+                Prices = new ScryFall_Prices()
+                {
+                    USD = "53.54",
+                    USDFoil = "53.54"
+                },
                 ScryFallUri = "https://scryfall.com/card/exp/43?utm_source=api",
                 SetName = "Zendikar Expeditions",
                 SetCode = "EXP",
@@ -277,7 +285,11 @@ namespace NerdBotScryFallPlugin_Tests
             var card = new ScryFallCard()
             {
                 Name = "Strip Mine",
-                PriceUsd = "",
+                Prices = new ScryFall_Prices()
+                {
+                    USD = "",
+                    USDFoil = ""
+                },
                 ScryFallUri = "https://scryfall.com/card/exp/43?utm_source=api",
                 SetName = "Zendikar Expeditions",
                 SetCode = "EXP",
