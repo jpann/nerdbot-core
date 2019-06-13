@@ -25,8 +25,8 @@ namespace NerdBotScryFallPlugin.POCO
         [JsonProperty("image_uris")]
         public ScryFall_ImgUri Image_Uris { get; set; }
 
-        [JsonProperty("usd")]
-        public string PriceUsd { get; set; }
+        //[JsonProperty("usd")]
+        //public string PriceUsd { get; set; }
 
         [JsonProperty("set")]
         public string SetCode { get; set; }
@@ -42,6 +42,9 @@ namespace NerdBotScryFallPlugin.POCO
 
         [JsonProperty("card_faces")]
         public List<ScryFall_CardFace> Card_Faces { get; set; }
+
+        [JsonProperty("prices")]
+        public ScryFall_Prices Prices { get; set; }
     }
 
     public class ScryFall_ImgUri
@@ -114,5 +117,18 @@ namespace NerdBotScryFallPlugin.POCO
 
         [JsonProperty("image_uris")]
         public ScryFall_ImgUri Image_Uris { get; set; }
+    }
+
+    public class ScryFall_Prices
+    {
+        [JsonProperty("usd")]
+        public string USD { get; set; }
+
+        [JsonProperty("usd_foil")]
+        public string USDFoil { get; set; }
+
+        [JsonProperty("eur")]
+        public string Euro { get; set; }
+
     }
 }

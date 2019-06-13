@@ -116,20 +116,37 @@ namespace NerdBotScryFallPlugin
                 {
                     this.Logger.Debug($"Found card '{scryCard.Name}' in set '{scryCard.SetName}'.");
 
-                    string price = scryCard.PriceUsd;
-                    string url = scryCard.ScryFallUri;
-
-                    url = this.Services.UrlShortener.ShortenUrl(url);
-
-                    if (!string.IsNullOrEmpty(price))
+                    if (scryCard.Prices != null)
                     {
-                        string msg = string.Format($"{scryCard.Name} [{scryCard.SetCode.ToUpper()}] - ${price}. {url}");
+                        string price = scryCard.Prices.USD;
 
-                        messenger.SendMessage(msg);
+                        string url = scryCard.ScryFallUri;
 
+                        url = this.Services.UrlShortener.ShortenUrl(url);
+
+                        if (!string.IsNullOrEmpty(price))
+                        {
+                            string msg = string.Format($"{scryCard.Name} [{scryCard.SetCode.ToUpper()}] - ${price}. {url}");
+
+                            messenger.SendMessage(msg);
+
+                        }
+                        else
+                        {
+                            if (!string.IsNullOrEmpty(scryCard.Prices.USDFoil))
+                            {
+                                string msg = string.Format($"{scryCard.Name} [{scryCard.SetCode.ToUpper()}] - ${scryCard.Prices.USDFoil} (FOIL). {url}");
+
+                                messenger.SendMessage(msg);
+                            }
+                        }
+
+                        return true;
                     }
-
-                    return true;
+                    else
+                    {
+                        return false;
+                    }
                 }
                 else
                 {
