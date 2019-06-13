@@ -17,6 +17,9 @@ branches:
 init:
   - git config --global core.autocrlf input
 
+install:
+  - nuget install GitReleaseNotes.Portable -OutputDirectory %APPVEYOR_BUILD_FOLDER%\packages -Version 0.7.1
+
 configuration:
   - Release
 
@@ -54,9 +57,15 @@ artifacts:
 test_script:
   - dotnet test --test-adapter-path:. --logger:Appveyor C:\projects\nerdbot-core\NerdBotCore\NerdBotCore.sln
 
+before_deploy:
+  - ps: cd ${env:APPVEYOR_BUILD_FOLDER};
+  - ps: .\packages\GitReleaseNotes.Portable.0.7.1\tools\GitReleaseNotes.exe . /OutputFile ReleaseNotes.md;
+  - ps: ${env:release_description} = ( Get-Content -LiteralPath ReleaseNotes.md -Encoding UTF8 ) -join "`n";
+  - ps: ${env:release_description} = ${env:release_description} + ".";
+
 deploy:
   release: NerdBot-$(APPVEYOR_BUILD_VERSION)
-  description: NerdBot build $(APPVEYOR_BUILD_VERSION).
+  description: NerdBot build $(APPVEYOR_BUILD_VERSION).\n$(release_description)
   provider: GitHub
   auth_token:
     secure: EXRr3SxM7c0kVhOc5HAyMr4gUaCJA11QE/RbTNrqYil9WXKDqoQoigCfdD6ZjhDX # encrypted token from GitHub
